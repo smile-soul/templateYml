@@ -1,8 +1,7 @@
 ## Docs
 
 --- 
-
-### Kubernetes
+### Kubernetes
 
 This directory contains a number of templates of how to run real applications with Kubernetes.
 

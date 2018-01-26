@@ -8,8 +8,8 @@ This directory contains a number of templates of how to run real applications wi
 
 Refer to the Kubernetes documentation for how to execute the tutorials.
 
- * [Kubernetes_EN](https://kubernetes.io/docs/tutorials/)
- * [Kubernetes_ZH](https://www.kubernetes.org.cn/doc-11)
+ * [Kubernetes_en](https://kubernetes.io/docs/tutorials/)
+ * [Kubernetes_zh](https://www.kubernetes.org.cn/doc-11)
 
 ---
 
@@ -19,11 +19,15 @@ Maintained Templates are expected to be updated with every Kubernetes release, t
 ---
 ### Docker
 
-* [Docker_CH](https://yeasy.gitbooks.io/docker_practice/content/introduction/what.html)
+* [Docker_zh](https://yeasy.gitbooks.io/docker_practice/content/introduction/what.html)
 * [Smilesoul_Docker](https://hub.docker.com/u/smilesoul/)
 
 ---
-<!-- ### Dockerfile -->
+### Dockerfile
+
+Dockerfile of building source
+
+
 ---
 ### Shell
 Maintained script

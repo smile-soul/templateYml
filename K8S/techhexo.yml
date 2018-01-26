@@ -2,20 +2,20 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: test
+  name: hexo #命名空间名称
 ---
 kind: Deployment
 apiVersion: extensions/v1beta1
 metadata:
-  name: hellodeploy #deploy名称
-  namespace: test
+  name: techhexo #deploy名称
+  namespace: hexo #命名空间名称
 spec:
   selector:
     matchLabels:
       podName: compareName #selector需要一一对应
   template: 
     metadata:
-      name: hellopod #pod名称
+      name: techhexo #pod名称
       labels:
         podName: compareName #selector需要一一对应
     spec:
@@ -23,9 +23,11 @@ spec:
       # - name: mappingVolmeName #挂载卷源映射名称
       #   hostPath:
       #     path: mappingVolmePath #挂载卷源映射路径
+      imagePullSecrets:
+      - name: aliregistry
       containers:
       - name: hello
-        image: docker.io/smilesoul/nginx:test #镜像
+        image: docker.io/smilesoul/techblog:0126 #镜像
         imagePullPolicy: Always
         # env:    环境变量设置
         # - name: env
@@ -51,8 +53,8 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: hellosvc  #Svc的名称
-  namespace: test
+  name: techhexo  #Svc的名称
+  namespace: hexo #命名空间名称
 spec:
   # type: NodePort 指定对外开放端口
   externalIPs:
@@ -68,14 +70,15 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: helloing #ingress内网名称
-  namespace: test
+  name: techhexo #ingress内网名称
+  namespace: hexo #命名空间名称
 spec:
   rules:
-  - host: test.smilesoul.top #域名--解析指向外网ip的域名,进行泛域名解析可以，对域名指向
+  - host: tech.smilesoul.top #域名--解析指向外网ip的域名,进行泛域名解析可以，对域名指向
     http:
       paths:
-      - backend:
-          serviceName: hellosvc
+      - path: /
+        backend:
+          serviceName: techhexo #Svc的名称
           servicePort: 80
 

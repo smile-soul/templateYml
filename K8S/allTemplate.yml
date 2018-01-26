@@ -1,11 +1,11 @@
 ---
-apiVersion: extensions/v1beta1
+apiVersion: v1
 kind: Namespace
 metadata:
   name: {NameSpaceName} #命名空间名称
 ---
 kind: Deployment
-apiVersion: extensions/v1beta1
+apiVersion: v1
 metadata:
   name: {DeployName} #deploy名称
   namespace: {NameSpaceName} #命名空间名称
@@ -23,6 +23,8 @@ spec:
       - name: {mappingVolmeName} #挂载卷源映射名称
         hostPath:
           path: {mappingVolmePath} #挂载卷源映射路径
+      imagePullSecrets:
+      - name: {secretName} #设置的secret镜像密码
       containers:
       - name: hello
         image: {images:tag} #镜像
@@ -36,6 +38,8 @@ spec:
         volumeMounts:
         - mountPath: {containerVolmePath}  #挂载卷容器内映射路径
           name:  {containerVolmeName} #挂载卷容器内映射名称
+          # secret:
+          #   secretName: mysecret #设置的secret密码
         resources:
           requests:
             cpu: 200m
@@ -65,7 +69,7 @@ spec:
   selector:
     podName: compareName #selector需要一一对应
 ---
-apiVersion: extensions/v1beta1
+apiVersion: v1
 kind: Ingress
 metadata:
   name: {IngName} #ingress内网名称
